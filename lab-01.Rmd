@@ -39,6 +39,24 @@ _Create a frequency table of the number of tourist attractions in the data set b
 
 #visitors %>% count(_____)
 ```
+```
+> visitors %>% count(region)
+# A tibble: 12 × 2
+   region                       n
+   <chr>                    <int>
+ 1 East Midlands                9
+ 2 East of England             26
+ 3 London                      39
+ 4 North East                  25
+ 5 North West                  21
+ 6 Northern Ireland             9
+ 7 Scotland                    97
+ 8 South East                  34
+ 9 South West                  30
+10 Wales                        2
+11 West Midlands               35
+12 Yorkshire and the Humber    21
+```
 
 ### Exercise b.
 
@@ -50,6 +68,21 @@ _Create a frequency table by `admission` and `setting`._
 #visitors %>% count(_____, _____)
 ```
 
+```
+> visitors %>% count(admission,setting)
+# A tibble: 9 × 3
+  admission setting     n
+  <chr>     <chr>   <int>
+1 Charged   I          21
+2 Charged   M          12
+3 Charged   O           5
+4 Free      I          77
+5 Free      M           8
+6 Free      O          43
+7 Members   I          23
+8 Members   M         106
+9 Members   O          53
+```
 
 ## Question 2
 
@@ -82,6 +115,22 @@ _What are the top 10 most visited attractions in 2021?_
 #  head(n = ____)
 ```
 
+```
+> visitors %>% arrange(desc(n_2021))
+# A tibble: 348 × 6
+   attraction                              n_2021 n_2022 admission setting region
+   <chr>                                    <dbl>  <dbl> <chr>     <chr>   <chr> 
+ 1 The Crown Estate, Windsor Great Park    5.40e6 5.64e6 Free      O       South…
+ 2 Royal Botanic Gardens Kew               1.96e6 1.96e6 Members   M       London
+ 3 Natural History Museum (South Kensingt… 1.57e6 4.65e6 Free      I       London
+ 4 RHS Garden Wisley                       1.41e6 1.49e6 Members   O       South…
+ 5 The British Museum                      1.33e6 4.10e6 Free      I       London
+ 6 Tate Modern                             1.16e6 3.88e6 Free      I       London
+ 7 Somerset House                          9.85e5 2.35e6 Free      M       London
+ 8 Science Museum                          9.56e5 2.33e6 Free      I       London
+ 9 Jeskyns Community Woodland              8.79e5 4.47e5 Free      O       South…
+10 V&A South Kensington                    8.58e5 2.37e6 Free      I       London
+```
 ## Question 4
 
 _What is the admission charge for the `"National Museum of Scotland"`?_
@@ -99,6 +148,13 @@ _Which attraction had exactly 565,772 visitors in 2022?_
 #visitors %>% filter(___ == ____)
 ```
 
+```
+> visitors %>% filter(n_2022 == "565772")
+# A tibble: 1 × 6
+  attraction                        n_2021 n_2022 admission setting region    
+  <chr>                              <dbl>  <dbl> <chr>     <chr>   <chr>     
+1 Knowsley Safari and Knowsley Hall     NA 565772 Members   M       North West
+```
 ### Exercise e.
 
 _How many attraction had more than 1 million visitors in 2022?_
